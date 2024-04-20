@@ -21,3 +21,10 @@ def etp_encrypt(message, seed):
     message_bytes = message.encode()
     keystream = generate_keystream(seed, len(message_bytes))
     encrypted_message = bytearray()
+
+
+    for i in range(len(message_bytes)):
+        encrypted_byte = message_bytes[i] ^ keystream[i]
+        encrypted_message.append(encrypted_byte)
+
+    return encrypted_message.hex()
